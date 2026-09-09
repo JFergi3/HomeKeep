@@ -1,0 +1,29 @@
+@model HomeKeep.Models.MaintenanceTask
+
+@{
+    ViewData["Title"] = "Maintenance Task Details";
+}
+
+<h1>Maintenance Task Details</h1>
+
+<dl>
+    <dt>Name</dt>
+    <dd>@Model.Name</dd>
+
+    <dt>Description</dt>
+    <dd>@Model.Description</dd>
+
+    <dt>Room</dt>
+    <dd>@Model.Room</dd>
+
+    <dt>Frequency</dt>
+    <dd>Every @Model.FrequencyDays days</dd>
+
+    <dt>Completed</dt>
+    <dd>@(Model.IsCompleted ? "Yes" : "No")</dd>
+</dl>
+
+<a asp-controller="MaintenanceTasks"
+   asp-action="Index">
+    Back to Maintenance Tasks
+</a>

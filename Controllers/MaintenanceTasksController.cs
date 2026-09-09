@@ -9,4 +9,17 @@ public class MaintenanceTasksController : Controller
     {
         return View(MaintenanceTaskData.All);
     }
+
+    public IActionResult Details(int id)
+    {
+        MaintenanceTask? task = MaintenanceTaskData.All
+            .FirstOrDefault(task => task.Id == id);
+
+        if (task == null)
+        {
+            return NotFound();
+        }
+
+        return View(task);
+    }
 }
