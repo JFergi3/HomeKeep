@@ -1,0 +1,34 @@
+@model List<MaintenanceTask>
+
+@{
+    ViewData["Title"] = "Maintenance Tasks";
+}
+
+<h1>Home Maintenance Tasks</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Room</th>
+            <th>Frequency</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Name</td>
+                <td>@task.Room</td>
+                <td>Every @task.FrequencyDays days</td>
+                <td>@(task.IsCompleted ? "Completed" : "Due")</td>
+                <td>
+                    <a href="/MaintenanceTasks/Details/@task.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
