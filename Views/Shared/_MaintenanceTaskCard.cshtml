@@ -1,0 +1,18 @@
+@model HomeKeep.Models.MaintenanceTask
+
+<div class="card h-100">
+    <div class="card-body">
+        <h2 class="card-title h5">@Model.Name</h2>
+        <p class="card-text">@Model.Description</p>
+        <p class="card-text">
+            Room: @Model.Room<br />
+            Every @Model.FrequencyDays days
+        </p>
+        <span class="badge @(Model.IsCompleted ? "bg-success" : "bg-warning text-dark")">
+            @(Model.IsCompleted ? "Completed" : "Due")
+        </span>
+    </div>
+    <div class="card-footer">
+        <a href="/MaintenanceTasks/Details/@Model.Id">Details</a>
+    </div>
+</div>
