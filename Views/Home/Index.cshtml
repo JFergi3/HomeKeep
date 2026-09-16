@@ -1,10 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Maintenance Dashboard";
+    var featured = HomeKeep.Models.MaintenanceTaskData.All.First();
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">HomeKeep Maintenance Planner</h1>
+    <p>Keep your home’s maintenance tasks organized in one place.</p>
+</div>
+
+<h2 class="h5 mt-4">Featured maintenance task</h2>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+        <partial name="_MaintenanceTaskCard" model="featured" />
+    </div>
 </div>
 
 @section Scripts {
