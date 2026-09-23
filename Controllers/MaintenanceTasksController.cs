@@ -27,4 +27,19 @@ public class MaintenanceTasksController : Controller
     {
         return View();
     }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Create(MaintenanceTask task)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(task);
+        }
+
+        task.Id = MaintenanceTaskData.All.Max(item => item.Id) + 1;
+        MaintenanceTaskData.All.Add(task);
+
+        return RedirectToAction(nameof(Index));
+    }
 }
