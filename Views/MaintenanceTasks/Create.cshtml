@@ -1,0 +1,44 @@
+@model HomeKeep.Models.MaintenanceTask
+
+@{
+    ViewData["Title"] = "Add Maintenance Task";
+}
+
+<h1>Add Maintenance Task</h1>
+
+<form asp-action="Create" method="post" class="col-md-6">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Room" class="form-label"></label>
+        <input asp-for="Room" class="form-control" />
+        <span asp-validation-for="Room" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FrequencyDays" class="form-label"></label>
+        <input asp-for="FrequencyDays" class="form-control" />
+        <span asp-validation-for="FrequencyDays" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="IsCompleted" class="form-check-input" />
+        <label asp-for="IsCompleted" class="form-check-label"></label>
+        <span asp-validation-for="IsCompleted" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Task</button>
+    <a asp-action="Index" class="btn btn-link">Cancel</a>
+</form>
