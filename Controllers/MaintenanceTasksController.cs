@@ -22,4 +22,9 @@ public class MaintenanceTasksController : Controller
 
         return View(task);
     }
+
+    public IActionResult Create()
+    {
+        return View();
+    }
 }
