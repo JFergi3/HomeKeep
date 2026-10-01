@@ -1,14 +1,25 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using HomeKeep.Models;
+using HomeKeep.Data;
 
 namespace HomeKeep.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly HomeKeepContext _context;
+
+    public HomeController(HomeKeepContext context)
+    {
+        _context = context;
+    }
     public IActionResult Index()
     {
-        return View();
+        var featured = _context.MaintenanceTasks
+            .OrderBy(task => task.Id)
+            .FirstOrDefault();
+
+        return View(featured);
     }
 
     public IActionResult Privacy()

@@ -1,6 +1,7 @@
-﻿@{
+﻿@model HomeKeep.Models.MaintenanceTask?
+
+@{
     ViewData["Title"] = "Maintenance Dashboard";
-    var featured = HomeKeep.Models.MaintenanceTaskData.All.First();
 }
 
 <div class="text-center">
@@ -9,11 +10,19 @@
 </div>
 
 <h2 class="h5 mt-4">Featured maintenance task</h2>
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
-        <partial name="_MaintenanceTaskCard" model="featured" />
+
+@if (Model != null)
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <partial name="_MaintenanceTaskCard" model="Model" />
+        </div>
     </div>
-</div>
+}
+else
+{
+    <p>No maintenance tasks are available yet.</p>
+}
 
 @section Scripts {
 <script src="https://jgrissom.github.io/dotnet-web-dev/week-07/homework-checks.js"></script>}

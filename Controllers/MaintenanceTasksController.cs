@@ -1,3 +1,4 @@
+using HomeKeep.Data;
 using HomeKeep.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -5,14 +6,20 @@ namespace HomeKeep.Controllers;
 
 public class MaintenanceTasksController : Controller
 {
+    private readonly HomeKeepContext _context;
+
+    public MaintenanceTasksController(HomeKeepContext context)
+    {
+        _context = context;
+    }
     public IActionResult Index()
     {
-        return View(MaintenanceTaskData.All);
+        return View(_context.MaintenanceTasks.ToList());
     }
 
     public IActionResult Details(int id)
     {
-        MaintenanceTask? task = MaintenanceTaskData.All
+        MaintenanceTask? task = _context.MaintenanceTasks
             .FirstOrDefault(task => task.Id == id);
 
         if (task == null)
@@ -37,8 +44,8 @@ public class MaintenanceTasksController : Controller
             return View(task);
         }
 
-        task.Id = MaintenanceTaskData.All.Max(item => item.Id) + 1;
-        MaintenanceTaskData.All.Add(task);
+        _context.MaintenanceTasks.Add(task);
+        _context.SaveChanges();
 
         return RedirectToAction(nameof(Index));
     }
