@@ -1,6 +1,7 @@
 using HomeKeep.Data;
 using HomeKeep.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeKeep.Controllers;
 
@@ -49,4 +50,60 @@ public class MaintenanceTasksController : Controller
 
         return RedirectToAction(nameof(Index));
     }
+
+     // GET: MaintenanceTasks/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var maintenanceTask = await _context.MaintenanceTasks.FindAsync(id);
+            if (maintenanceTask == null)
+            {
+                return NotFound();
+            }
+            return View(maintenanceTask);
+        }
+
+        // POST: MaintenanceTasks/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Room,FrequencyDays,IsCompleted")] MaintenanceTask maintenanceTask)
+        {
+            if (id != maintenanceTask.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(maintenanceTask);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!MaintenanceTaskExists(maintenanceTask.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(maintenanceTask);
+        }
+
+         private bool MaintenanceTaskExists(int id)
+        {
+            return _context.MaintenanceTasks.Any(e => e.Id == id);
+        }
 }
