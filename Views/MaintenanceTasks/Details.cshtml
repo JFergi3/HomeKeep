@@ -29,6 +29,10 @@
        class="btn btn-secondary">Edit Task</a>
 </div>
 
+<a asp-action="Delete"
+   asp-route-id="@Model.Id"
+   class="btn btn-outline-danger ms-2">Delete Task</a>
+
 <a asp-controller="MaintenanceTasks"
    asp-action="Index">
     Back to Maintenance Tasks

@@ -106,4 +106,37 @@ public class MaintenanceTasksController : Controller
         {
             return _context.MaintenanceTasks.Any(e => e.Id == id);
         }
+
+           // GET: MaintenanceTasks/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var maintenanceTask = await _context.MaintenanceTasks
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (maintenanceTask == null)
+            {
+                return NotFound();
+            }
+
+            return View(maintenanceTask);
+        }
+
+        // POST: MaintenanceTasks/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var maintenanceTask = await _context.MaintenanceTasks.FindAsync(id);
+            if (maintenanceTask != null)
+            {
+                _context.MaintenanceTasks.Remove(maintenanceTask);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
 }
