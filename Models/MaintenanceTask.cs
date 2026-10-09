@@ -19,4 +19,8 @@ public class MaintenanceTask
     [Range(1, 3650)]
     public int FrequencyDays { get; set; }
     public bool IsCompleted { get; set; }
+
+    [Display(Name = "Maintenance notes")]
+[StringLength(500)]
+public string? MaintenanceNotes { get; set; }
 }
