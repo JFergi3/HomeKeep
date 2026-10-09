@@ -72,7 +72,7 @@ public class MaintenanceTasksController : Controller
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Room,FrequencyDays,IsCompleted")] MaintenanceTask maintenanceTask)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Room,FrequencyDays,IsCompleted,MaintenanceNotes")] MaintenanceTask maintenanceTask)
         {
             if (id != maintenanceTask.Id)
             {

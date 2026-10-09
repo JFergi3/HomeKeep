@@ -23,6 +23,12 @@
     </div>
 
     <div class="mb-3">
+        <label asp-for="MaintenanceNotes" class="form-label"></label>
+        <textarea asp-for="MaintenanceNotes" class="form-control"></textarea>
+        <span asp-validation-for="MaintenanceNotes" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
         <label asp-for="Room" class="form-label"></label>
         <input asp-for="Room" class="form-control" />
         <span asp-validation-for="Room" class="text-danger"></span>
