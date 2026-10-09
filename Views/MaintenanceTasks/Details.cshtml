@@ -23,6 +23,12 @@
     <dd>@(Model.IsCompleted ? "Yes" : "No")</dd>
 </dl>
 
+<div class="my-4">
+    <a asp-action="Edit"
+       asp-route-id="@Model.Id"
+       class="btn btn-secondary">Edit Task</a>
+</div>
+
 <a asp-controller="MaintenanceTasks"
    asp-action="Index">
     Back to Maintenance Tasks
