@@ -1,12 +1,13 @@
 @model HomeKeep.Models.MaintenanceTask
 
 @{
-    ViewData["Title"] = "Add Maintenance Task";
+    ViewData["Title"] = "Edit Maintenance Task";
 }
 
 <h1>Add Maintenance Task</h1>
 
-<form asp-action="Create" method="post" class="col-md-6">
+<form asp-action="Edit" method="post" class="col-md-6">
+    <input type="hidden" asp-for="Id" />
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="mb-3">
@@ -39,8 +40,8 @@
         <span asp-validation-for="IsCompleted" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Add Task</button>
-    <a asp-action="Index" class="btn btn-link">Cancel</a>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-link">Cancel</a>
 </form>
 
 @section Scripts {
