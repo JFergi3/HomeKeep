@@ -21,7 +21,8 @@ public class MaintenanceTasksController : Controller
     public IActionResult Details(int id)
     {
         MaintenanceTask? task = _context.MaintenanceTasks
-            .FirstOrDefault(task => task.Id == id);
+    .Include(task => task.MaintenanceLogs)
+    .FirstOrDefault(task => task.Id == id);
 
         if (task == null)
         {

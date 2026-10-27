@@ -29,6 +29,30 @@
     <dd>@(Model.IsCompleted ? "Yes" : "No")</dd>
 </dl>
 
+<h2 class="h4 mt-4">Maintenance history</h2>
+
+@if (Model.MaintenanceLogs.Count > 0)
+{
+    <div class="list-group mb-4">
+        @foreach (var log in Model.MaintenanceLogs.OrderByDescending(log => log.CompletedOn))
+        {
+            <div class="list-group-item">
+                <div class="d-flex justify-content-between">
+                    <strong>@log.PerformedBy</strong>
+                    <span class="text-muted small">
+                        @log.CompletedOn.ToString("MMMM d, yyyy")
+                    </span>
+                </div>
+                <p class="mb-0">@log.Notes</p>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p class="text-muted">No maintenance has been logged for this task yet.</p>
+}
+
 <div class="my-4">
     <a asp-action="Edit"
        asp-route-id="@Model.Id"
