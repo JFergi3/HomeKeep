@@ -21,6 +21,9 @@ public class MaintenanceTask
     public bool IsCompleted { get; set; }
 
     [Display(Name = "Maintenance notes")]
-[StringLength(500)]
-public string? MaintenanceNotes { get; set; }
+    [StringLength(500)]
+    public string? MaintenanceNotes { get; set; }
+
+    public ICollection<MaintenanceLog> MaintenanceLogs { get; set; } =
+        new List<MaintenanceLog>();
 }

@@ -11,6 +11,7 @@ public class HomeKeepContext : DbContext
     }
 
     public DbSet<MaintenanceTask> MaintenanceTasks => Set<MaintenanceTask>();
+    public DbSet<MaintenanceLog> MaintenanceLogs => Set<MaintenanceLog>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -70,5 +71,32 @@ public class HomeKeepContext : DbContext
                 IsCompleted = false
             }
         );
+
+        modelBuilder.Entity<MaintenanceLog>().HasData(
+    new MaintenanceLog
+    {
+        Id = 1,
+        MaintenanceTaskId = 1,
+        CompletedOn = new DateTime(2026, 10, 1),
+        PerformedBy = "Jake",
+        Notes = "Replaced the furnace filter and checked airflow."
+    },
+    new MaintenanceLog
+    {
+        Id = 2,
+        MaintenanceTaskId = 1,
+        CompletedOn = new DateTime(2026, 7, 1),
+        PerformedBy = "Jake",
+        Notes = "Removed the old filter and installed a new filter."
+    },
+    new MaintenanceLog
+    {
+        Id = 3,
+        MaintenanceTaskId = 2,
+        CompletedOn = new DateTime(2026, 10, 15),
+        PerformedBy = "Jake",
+        Notes = "Tested each smoke detector and confirmed alarms sounded."
+    }
+);
     }
 }
