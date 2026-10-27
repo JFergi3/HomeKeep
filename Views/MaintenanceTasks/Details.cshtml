@@ -29,6 +29,15 @@
     <dd>@(Model.IsCompleted ? "Yes" : "No")</dd>
 </dl>
 
+<p>
+    <a asp-controller="MaintenanceLogs"
+       asp-action="Create"
+       asp-route-maintenanceTaskId="@Model.Id"
+       class="btn btn-primary">
+        Log maintenance
+    </a>
+</p>
+
 <h2 class="h4 mt-4">Maintenance history</h2>
 
 @if (Model.MaintenanceLogs.Count > 0)
