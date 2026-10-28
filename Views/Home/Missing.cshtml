@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Page not found";
+}
+
+<div class="text-center py-5">
+    <h1>Page needs maintenance</h1>
+    <p class="lead">
+        This page doesn’t exist, or the maintenance task has been removed. 
+
+        <br> <dl>Maybe everything broke because no one maintained this website.</dl>
+    </p>
+    <a asp-controller="MaintenanceTasks"
+       asp-action="Index"
+       class="btn btn-primary">
+        Back to Maintenance Tasks
+    </a>
+</div>
