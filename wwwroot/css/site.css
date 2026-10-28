@@ -29,3 +29,8 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+.maintenance-history {
+  background-color: #eef5fb;
+  border-left: 5px solid #10110e;
+}

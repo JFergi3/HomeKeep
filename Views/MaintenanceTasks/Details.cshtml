@@ -29,6 +29,8 @@
     <dd>@(Model.IsCompleted ? "Yes" : "No")</dd>
 </dl>
 
+<section class="maintenance-history p-4 my-4 rounded-3">
+
 <p>
     <a asp-controller="MaintenanceLogs"
        asp-action="Create"
@@ -38,7 +40,7 @@
     </a>
 </p>
 
-<h2 class="h4 mt-4">Maintenance history</h2>
+    <h2 class="h4">Maintenance history</h2>
 
 @if (Model.MaintenanceLogs.Count > 0)
 {
@@ -61,6 +63,7 @@ else
 {
     <p class="text-muted">No maintenance has been logged for this task yet.</p>
 }
+</section>
 
 <div class="my-4">
     <a asp-action="Edit"
