@@ -5,12 +5,12 @@
 }
 
 <h1>Maintenance Tasks</h1>
-<a asp-action="Create" class="btn btn-primary mb-3">Add Maintenance Task</a>
+<a asp-action="Create" class="btn btn-primary mb-3">Add Task</a>
 
 @if (!Model.Any())
 {
     <p class="text-muted">
-        No maintenance tasks yet. Select Add Maintenance Task to create your first one.
+        No maintenance tasks yet. Select <strong>Add Task</strong> to create your first one.
     </p>
 }
 else

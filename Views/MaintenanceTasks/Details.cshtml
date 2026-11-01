@@ -51,14 +51,6 @@
 
     <h2 class="h4">Maintenance history</h2>
 
-<p>
-    <a asp-controller="MaintenanceLogs"
-       asp-action="Create"
-       asp-route-maintenanceTaskId="@Model.Id"
-       class="btn btn-primary">
-        Log maintenance
-    </a>
-</p>
 
 
 @if (Model.MaintenanceLogs.Count > 0)
@@ -82,4 +74,14 @@ else
 {
     <p class="text-muted">No maintenance has been logged for this task yet.</p>
 }
+
+<p>
+    <a asp-controller="MaintenanceLogs"
+       asp-action="Create"
+       asp-route-maintenanceTaskId="@Model.Id"
+       class="btn btn-primary">
+        Log maintenance
+    </a>
+</p>
+
 </section>
