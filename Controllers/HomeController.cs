@@ -22,7 +22,7 @@ public class HomeController : Controller
         return View(featured);
     }
 
-    public IActionResult Privacy()
+    public IActionResult About()
     {
         return View();
     }
