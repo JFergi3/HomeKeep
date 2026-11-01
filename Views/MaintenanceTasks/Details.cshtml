@@ -4,6 +4,10 @@
     ViewData["Title"] = Model.Name;
 }
 
+<a asp-action="Index" class="d-inline-block mb-3">
+    ← Back to Tasks
+</a>
+
 <h1>Maintenance Task Details</h1>
 
 <dl>
@@ -29,7 +33,23 @@
     <dd>@(Model.IsCompleted ? "Yes" : "No")</dd>
 </dl>
 
+<div class="d-flex flex-wrap gap-5 mt-3 mb-4">
+    <a asp-action="Edit"
+       asp-route-id="@Model.Id"
+       class="btn btn-outline-dark">
+        Edit Task
+    </a>
+
+    <a asp-action="Delete"
+       asp-route-id="@Model.Id"
+       class="btn btn-outline-danger">
+        Delete Task
+    </a>
+</div>
+
 <section class="maintenance-history p-4 my-4 rounded-3">
+
+    <h2 class="h4">Maintenance history</h2>
 
 <p>
     <a asp-controller="MaintenanceLogs"
@@ -40,7 +60,6 @@
     </a>
 </p>
 
-    <h2 class="h4">Maintenance history</h2>
 
 @if (Model.MaintenanceLogs.Count > 0)
 {
@@ -64,18 +83,3 @@ else
     <p class="text-muted">No maintenance has been logged for this task yet.</p>
 }
 </section>
-
-<div class="my-4">
-    <a asp-action="Edit"
-       asp-route-id="@Model.Id"
-       class="btn btn-secondary">Edit Task</a>
-</div>
-
-<a asp-action="Delete"
-   asp-route-id="@Model.Id"
-   class="btn btn-outline-danger ms-2">Delete Task</a>
-
-<a asp-controller="MaintenanceTasks"
-   asp-action="Index">
-    Back to Maintenance Tasks
-</a>
