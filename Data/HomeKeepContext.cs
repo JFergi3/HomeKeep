@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using HomeKeep.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace HomeKeep.Data;
 
-public class HomeKeepContext : DbContext
+public class HomeKeepContext : IdentityDbContext<HomeKeepUser>
 {
     public HomeKeepContext(DbContextOptions<HomeKeepContext> options)
         : base(options)
@@ -15,6 +16,7 @@ public class HomeKeepContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<MaintenanceTask>().HasData(
             new MaintenanceTask
             {
