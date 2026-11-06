@@ -32,11 +32,12 @@ public class AccountController : Controller
         {
             return View(form);
         }
-
+        
         var user = new HomeKeepUser
         {
             UserName = form.Email,
-            Email = form.Email
+            Email = form.Email,
+            DisplayName = form.DisplayName
         };
 
         var result = await _userManager.CreateAsync(user, form.Password);
