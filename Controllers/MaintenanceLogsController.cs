@@ -3,9 +3,11 @@ using HomeKeep.Models;
 using HomeKeep.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HomeKeep.Controllers;
 
+[Authorize]
 public class MaintenanceLogsController : Controller
 {
     private readonly HomeKeepContext _context;

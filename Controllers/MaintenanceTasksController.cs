@@ -2,9 +2,11 @@ using HomeKeep.Data;
 using HomeKeep.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HomeKeep.Controllers;
 
+[Authorize]
 public class MaintenanceTasksController : Controller
 {
     private readonly HomeKeepContext _context;
@@ -13,11 +15,14 @@ public class MaintenanceTasksController : Controller
     {
         _context = context;
     }
-    public IActionResult Index()
-    {
-        return View(_context.MaintenanceTasks.ToList());
-    }
+    
+    [AllowAnonymous]
+public IActionResult Index()
+{
+    return View(_context.MaintenanceTasks.ToList());
+}
 
+    [AllowAnonymous]
     public IActionResult Details(int id)
     {
         MaintenanceTask? task = _context.MaintenanceTasks
