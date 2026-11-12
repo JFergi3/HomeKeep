@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Managers Only";
+}
+
+<div class="text-center py-5">
+    <h1 class="display-5">Managers Only 🔒</h1>
+    <p class="lead text-muted">
+        You're signed in, but managing maintenance tasks is restricted to HomeKeep managers.
+    </p>
+    <a asp-controller="MaintenanceTasks" asp-action="Index" class="btn btn-primary">
+        Back to Maintenance Tasks
+    </a>
+</div>

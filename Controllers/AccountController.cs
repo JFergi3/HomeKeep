@@ -32,7 +32,7 @@ public class AccountController : Controller
         {
             return View(form);
         }
-        
+
         var user = new HomeKeepUser
         {
             UserName = form.Email,
@@ -89,6 +89,13 @@ public class AccountController : Controller
         }
 
         return RedirectToAction("Index", "Home");
+    }
+
+    // GET /Account/AccessDenied — where [Authorize(Roles = "Manager")] sends
+    // a signed-in member who does not have the Manager role.
+    public IActionResult AccessDenied()
+    {
+        return View();
     }
 
     [HttpPost]
