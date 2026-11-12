@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HomeKeep.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Manager")]
 public class MaintenanceTasksController : Controller
 {
     private readonly HomeKeepContext _context;
