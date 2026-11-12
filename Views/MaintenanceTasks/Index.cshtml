@@ -5,7 +5,11 @@
 }
 
 <h1>Maintenance Tasks</h1>
-<a asp-action="Create" class="btn btn-primary mb-3">Add Task</a>
+
+@if (User.IsInRole("Manager"))
+{
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+}
 
 @if (!Model.Any())
 {

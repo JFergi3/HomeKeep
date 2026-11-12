@@ -33,19 +33,22 @@
     <dd>@(Model.IsCompleted ? "Yes" : "No")</dd>
 </dl>
 
-<div class="d-flex flex-wrap gap-5 mt-3 mb-4">
-    <a asp-action="Edit"
-       asp-route-id="@Model.Id"
-       class="btn btn-outline-dark">
-        Edit Task
-    </a>
+@if (User.IsInRole("Manager"))
+{
+    <div class="d-flex flex-wrap gap-5 mt-3 mb-4">
+        <a asp-action="Edit"
+           asp-route-id="@Model.Id"
+           class="btn btn-outline-dark">
+            Edit Task
+        </a>
 
-    <a asp-action="Delete"
-       asp-route-id="@Model.Id"
-       class="btn btn-outline-danger">
-        Delete Task
-    </a>
-</div>
+        <a asp-action="Delete"
+           asp-route-id="@Model.Id"
+           class="btn btn-outline-danger">
+            Delete Task
+        </a>
+    </div>
+}
 
 <section class="maintenance-history p-4 my-4 rounded-3">
 
