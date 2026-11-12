@@ -15,6 +15,12 @@ builder.Services.AddIdentity<HomeKeepUser, IdentityRole>()
 
 var app = builder.Build();
 
+// Week 12: Create the Manager role and assign it to the configured admin.
+using (var scope = app.Services.CreateScope())
+{
+    await RoleSeeder.SeedAsync(scope.ServiceProvider);
+}
+
 app.UseAuthentication();
 app.UseAuthorization();
 
