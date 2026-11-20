@@ -43,5 +43,11 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+app.MapGet("/api/MaintenanceTasks/count", async (HomeKeepContext context) =>
+{
+    var count = await context.MaintenanceTasks.CountAsync();
+    return Results.Ok(new { count });
+});
+
 
 app.Run();
