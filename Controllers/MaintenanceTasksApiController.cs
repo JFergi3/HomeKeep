@@ -2,6 +2,7 @@
 using HomeKeep.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using HomeKeep.DTOs;
 
 namespace HomeKeep.Controllers;
 
@@ -16,13 +17,62 @@ public class MaintenanceTasksApiController : ControllerBase
         _context = context;
     }
 
+
     [HttpGet]
     public async Task<IActionResult> GetMaintenanceTasks()
     {
         var tasks = await _context.MaintenanceTasks
             .AsNoTracking()
+            .Select(task => new MaintenanceTaskDto
+            {
+                Id = task.Id,
+                Name = task.Name,
+                Description = task.Description,
+                Room = task.Room,
+                FrequencyDays = task.FrequencyDays,
+                IsCompleted = task.IsCompleted,
+                MaintenanceNotes = task.MaintenanceNotes
+            })
             .ToListAsync();
 
         return Ok(tasks);
     }
+
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> GetMaintenanceTask(int id)
+    {
+        var task = await _context.MaintenanceTasks
+            .AsNoTracking()
+            .Include(task => task.MaintenanceLogs)
+            .FirstOrDefaultAsync(task => task.Id == id);
+
+        if (task == null)
+        {
+            return NotFound();
+        }
+
+        var details = new MaintenanceTaskDetailsDto
+        {
+            Id = task.Id,
+            Name = task.Name,
+            Description = task.Description,
+            Room = task.Room,
+            FrequencyDays = task.FrequencyDays,
+            IsCompleted = task.IsCompleted,
+            MaintenanceNotes = task.MaintenanceNotes,
+            MaintenanceLogs = task.MaintenanceLogs
+                .Select(log => new MaintenanceLogDto
+                {
+                    Id = log.Id,
+                    CompletedOn = log.CompletedOn,
+                    PerformedBy = log.PerformedBy,
+                    Notes = log.Notes
+                })
+                .ToList()
+        };
+
+        return Ok(details);
+    }
+
+
 }
