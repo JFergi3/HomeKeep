@@ -7,7 +7,7 @@ HomeKeep is an ASP.NET Core MVC application designed to help homeowners organize
 
 The application provides a centralized place to track household maintenance, review task details, and document maintenance history.
 
-**Live Application:** [HomeKeep on Azure](YOUR-AZURE-URL)
+**Live Application:** [HomeKeep on Azure](http://homekeep-jf2026.azurewebsites.net)
 
 ## Project Overview
 
@@ -153,7 +153,7 @@ The API can also be tested using a browser, Postman, or another HTTP client.
 1. Clone the repository.
 
 ```bash
-git clone YOUR-GITHUB-REPOSITORY-URL
+git clone https://github.com/JFergi3/HomeKeep
 ```
 
 2. Navigate to the application directory.
@@ -211,15 +211,5 @@ The deployed application uses its configured SQL Server connection and administr
 The same MVC pages and API endpoints are available on the deployed website.
 
 ## Project Development
-
-HomeKeep was developed incrementally throughout the semester, including:
-
-- MVC application structure and database integration.
-- Maintenance task management.
-- Maintenance history and related data.
-- User authentication and role-based authorization.
-- UI improvements, navigation, and custom error pages.
-- REST API endpoints, DTOs, validation, and API authorization.
-- Azure deployment and testing.
 
 Git commits document the implementation of individual features and improvements
