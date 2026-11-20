@@ -30,7 +30,11 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 
-app.UseStatusCodePagesWithReExecute("/Home/Missing");
+app.UseWhen(
+    context => !context.Request.Path.StartsWithSegments("/api"),
+    pages => pages.UseStatusCodePagesWithReExecute("/Home/Missing")
+);
+
 app.UseRouting();
 
 app.UseAuthentication();
